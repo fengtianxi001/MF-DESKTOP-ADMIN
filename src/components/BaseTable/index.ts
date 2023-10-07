@@ -1,0 +1,8 @@
+export { default as BaseTable } from './src/BaseTable.vue'
+export { default as BaseTableFilter } from './src/BaseTableFilter/index.vue'
+export { default as BaseTableOperate } from './src/BaseTableOperate/index.vue'
+export { default as BaseTablePagination } from './src/BaseTablePagination/index.vue'
+export { default as BaseTablePro } from './src/BaseTablePro/index.vue'
+export { default as BaseTableSetting } from './src/BaseTableSetting/index.vue'
+export { default as useTable } from './hooks/useTable'
+export { default as useTableMethods } from './hooks/useTableMethods'
