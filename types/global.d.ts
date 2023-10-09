@@ -1,4 +1,5 @@
 declare type AppType = {
+  id: string
   name: string
   src: string
   iconName: string

@@ -2,23 +2,12 @@ import { createVNode, ref, render, type Ref } from 'vue'
 import BaseViewer from '../components/BaseViewer/index.vue'
 
 export const docks = ref<AppListType>([])
+
 export const apps: Ref<AppListType> = ref([
   {
+    id: 'mf001',
     name: '一张图',
-    src: '@/views/msr-picture/index.vue',
-    iconName: 'fa-map-location-dot',
-    iconColor: '#0099ff',
-    window: {
-      width: 1000,
-      height: 800,
-      fullscreen: true,
-      minimizable: true,
-      maximizable: false,
-    },
-  },
-  {
-    name: '一张图2',
-    src: '@/views/msr-picture/index.vue',
+    src: '../../views/business-map/index.vue',
     iconName: 'fa-map-location-dot',
     iconColor: '#0099ff',
     window: {
@@ -27,6 +16,21 @@ export const apps: Ref<AppListType> = ref([
       fullscreen: true,
       minimizable: true,
       maximizable: true,
+    },
+  },
+  {
+    id: 'mf002',
+    name: '壁纸库',
+    src: '../../views/system-wallpaper/index.vue',
+    iconName: 'fa-image',
+    iconColor: '#8856ff',
+    window: {
+      width: 1000,
+      height: 'auto',
+      fullscreen: false,
+      minimizable: true,
+      maximizable: false,
+      resizable: false,
     },
   },
 ])
@@ -88,11 +92,13 @@ export const minusApp = (app: AppType) => {
 }
 
 export const fullscreenApp = (app: AppType) => {
-  const element = app.instance.el
-  if (document.fullscreenElement === element) {
-    document.exitFullscreen()
-  } else {
-    element?.requestFullscreen()
+  if (app.window.fullscreen !== false) {
+    const element = app.instance.el
+    if (document.fullscreenElement === element) {
+      document.exitFullscreen()
+    } else {
+      element?.requestFullscreen()
+    }
   }
 }
 

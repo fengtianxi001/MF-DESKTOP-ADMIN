@@ -7,17 +7,18 @@
       ref="viewer"
       :style="style"
       @click.stop="topApp(app)"
-      @dblclick="fullscreenApp(app)"
     >
-      <div class="viewer-handle viewer-handle-top" ref="resizeHandleTop"></div>
-      <div class="viewer-handle viewer-handle-right" ref="resizeHandleRight"></div>
-      <div class="viewer-handle viewer-handle-bottom" ref="resizeHandleBottom"></div>
-      <div class="viewer-handle viewer-handle-left" ref="resizeHandleLeft"></div>
-      <div class="viewer-handle viewer-handle-top-left" ref="resizeHandleTopLeft"></div>
-      <div class="viewer-handle viewer-handle-top-right" ref="resizeHandleTopRight"></div>
-      <div class="viewer-handle viewer-handle-bottom-right" ref="resizeHandleBottomRight"></div>
-      <div class="viewer-handle viewer-handle-bottom-left" ref="resizeHandleBottomLeft"></div>
-      <div class="viewer-header" ref="dragHandle">
+      <template v-if="app.window.resizable !== false">
+        <div class="viewer-handle viewer-handle-top" ref="resizeHandleTop"></div>
+        <div class="viewer-handle viewer-handle-right" ref="resizeHandleRight"></div>
+        <div class="viewer-handle viewer-handle-bottom" ref="resizeHandleBottom"></div>
+        <div class="viewer-handle viewer-handle-left" ref="resizeHandleLeft"></div>
+        <div class="viewer-handle viewer-handle-top-left" ref="resizeHandleTopLeft"></div>
+        <div class="viewer-handle viewer-handle-top-right" ref="resizeHandleTopRight"></div>
+        <div class="viewer-handle viewer-handle-bottom-right" ref="resizeHandleBottomRight"></div>
+        <div class="viewer-handle viewer-handle-bottom-left" ref="resizeHandleBottomLeft"></div>
+      </template>
+      <div class="viewer-header" ref="dragHandle" @dblclick="fullscreenApp(app)">
         <BaseAppIcon class="header-icon" :size="20" :name="app.iconName" :color="app.iconColor" />
         <span class="header-name">{{ app.name }}</span>
         <span
@@ -53,7 +54,7 @@ const zindex = ref(0)
 const show = ref(true)
 const visible = ref(true)
 
-const AsyncComp = defineAsyncComponent(() => import('../../views/msr-picture/index.vue'))
+const AsyncComp = defineAsyncComponent(() => import(props.app.src))
 
 const style = computed(() => {
   const appWindow = props.app.window
@@ -96,20 +97,26 @@ $z-index: v-bind(zindex);
   top: 100px;
   left: 100px;
   z-index: $z-index;
-  overflow-y: auto;
-  color: #fff;
-  background: linear-gradient(215deg, #2d161c, #102d53) no-repeat fixed center;
-  background-color: #202020;
-  border: 1.5px solid #6f6f6f30;
+  color: var(--color-text-2);
+  background-color: var(--color-bg-2);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
   box-shadow: 3px 3px 20px 3px #000000a0;
+
+  // transition: all 0.1s ease-in-out;
   animation-duration: 0.5s;
 
   .viewer-header {
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     height: 38px;
     padding: 0 0 0 9px;
-    cursor: move;
+    font-weight: bold;
+    background-color: var(--color-bg-2);
+    border-bottom: 1px solid var(--color-border);
 
     .header-icon {
       width: 22px;
@@ -129,11 +136,11 @@ $z-index: v-bind(zindex);
       width: 45px;
       height: 100%;
       font-size: 13px;
-      color: #ddd;
+      color: var(--color-text-2);
       cursor: pointer;
 
       &:hover {
-        background-color: #eeeeee0f;
+        background-color: rgb(var(--gray-1));
       }
     }
   }

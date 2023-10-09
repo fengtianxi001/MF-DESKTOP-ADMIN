@@ -12,9 +12,11 @@
   "dependencies": {
     "animate.css": "^4.1.1",
     "leaflet": "^1.9.4",
+    "lodash": "^4.17.21",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@arco-design/web-vue": "^2.52.0",

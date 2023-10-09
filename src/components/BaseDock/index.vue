@@ -10,12 +10,34 @@
         :color="dock.iconColor"
         @click="showApp(dock)"
       />
+      <BaseAppIcon
+        class="dock-block-item"
+        :size="30"
+        :name="theme.name"
+        :color="theme.color"
+        @click="onToggleTheme"
+      />
+      <BaseAppIcon class="dock-block-item" :size="30" name="fa-image" color="#8855ff" />
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { reactive } from 'vue'
 import { docks, showApp } from '@/stores/apps'
 import BaseAppIcon from '@/components/BaseAppIcon/index.vue'
+
+const theme = reactive({
+  value: 'light',
+  name: 'fa-sun',
+  color: '#ffaa00',
+})
+
+const onToggleTheme = () => {
+  theme.value = theme.value === 'light' ? 'dark' : 'light'
+  theme.name = theme.value === 'light' ? 'fa-sun' : 'fa-moon'
+  theme.color = theme.value === 'light' ? '#ffaa00' : '#1e2f50'
+  document.body.setAttribute('arco-theme', theme.value)
+}
 </script>
 <style lang="scss" scoped>
 $bar-height: 60px;
@@ -33,10 +55,8 @@ $bar-padding: 10px;
     grid-gap: $bar-padding;
     height: calc(#{$bar-height} - #{$bar-padding});
     padding: $bar-padding;
-    background-color: #252525bb;
-    box-shadow: 0 1px 2px #44444460, 0 3px 25px 1px #000000a0;
-    -webkit-backdrop-filter: blur(20px) saturate(1.5);
-    backdrop-filter: blur(20px) saturate(1.5);
+    background-color: rgba(var(--gray-1), 0.3);
+    border-radius: 6px;
 
     .dock-block-item {
       cursor: pointer;

@@ -8,16 +8,6 @@ const router = createRouter({
       name: 'home',
       component: RouterView,
     },
-    {
-      path: '/picture',
-      name: 'picture',
-      component: () => import('../views/msr-picture/index.vue'),
-    },
-    {
-      path: '/picture2',
-      name: 'picture2',
-      component: () => import('../views/msr-picture/index.vue'),
-    },
   ],
 })
 

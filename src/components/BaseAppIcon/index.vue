@@ -23,7 +23,6 @@ const style = computed(() => {
     borderRadius: `${size / 4}px`,
     background: color,
     fontSize: `${size / 2}px`,
-    boxShadow: `0 0 2px 0 ${color}ad`,
   }
 })
 </script>
@@ -33,5 +32,6 @@ const style = computed(() => {
   align-items: center;
   justify-content: center;
   color: #fff;
+  box-shadow: 0 0 5px rgb(0 0 0 / 35%);
 }
 </style>
