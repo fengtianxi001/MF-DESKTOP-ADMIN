@@ -1,16 +1,39 @@
 <template>
   <div class="widget-clock">
-    <div class="clock-time">17:54</div>
+    <div class="clock-time">{{ time }}</div>
     <div class="clock-date">
-      <span class="time-month">10月8日</span>
-      <span class="time-week">星期日</span>
-      <span class="time-lunar">八月廿四</span>
+      <span class="time-month">{{ dateInfo }}</span>
+      <span class="time-week">{{ weekInfo }}</span>
+      <span class="time-lunar">{{ lunarInfo.lunarMonthName + lunarInfo.lunarDayName }}</span>
+      <span class="time-lunar">{{
+        lunarInfo.GanZhiYear + lunarInfo.GanZhiMonth + lunarInfo.GanZhiDay
+      }}</span>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-// interface PropsType {}
-// const props = defineProps<PropsType>()
+import * as dayjs from 'dayjs'
+import { onMounted, ref } from 'vue'
+import LunarCalendar from 'lunar-calendar'
+dayjs.locale('zh-cn')
+
+const time = ref('00:00')
+const currentDate = new Date()
+const lunarInfo = LunarCalendar.solarToLunar(
+  currentDate.getFullYear(),
+  currentDate.getMonth() + 1,
+  currentDate.getDate()
+)
+
+const dateInfo = dayjs().format('MM月DD日')
+const weekInfo = dayjs().format('dddd')
+
+const updateClock = () => {
+  time.value = dayjs().format('hh:mm')
+}
+onMounted(() => {
+  setInterval(updateClock, 1000)
+})
 </script>
 <style lang="scss" scoped>
 .widget-clock {

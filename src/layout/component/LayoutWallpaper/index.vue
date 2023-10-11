@@ -2,10 +2,10 @@
   <div class="layout-wallpaper"></div>
 </template>
 <script setup lang="ts">
-import { system } from '@/layout/store/system'
+import { systemStore } from '@/layout/store/system'
 import { computed } from 'vue'
 
-const background = computed(() => `url(${system.value.wallpaper})`)
+const background = computed(() => `url(${systemStore.value.wallpaper})`)
 </script>
 <style lang="scss" scoped>
 $background: v-bind(background);

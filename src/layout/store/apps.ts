@@ -1,9 +1,9 @@
 import { createVNode, ref, render, type Ref } from 'vue'
 import BaseViewer from '@/components/BaseViewer/index.vue'
 
-export const docks = ref<AppListType>([])
+export const dockStore = ref<AppListType>([])
 
-export const apps: Ref<AppListType> = ref([
+export const appStore: Ref<AppListType> = ref([
   {
     id: 'mf001',
     name: '一张图',
@@ -36,17 +36,17 @@ export const apps: Ref<AppListType> = ref([
 ])
 
 export const addDockItem = (app: AppType) => {
-  docks.value.push(app)
+  dockStore.value.push(app)
 }
 export const deleteDockItem = (app: AppType) => {
-  const index = docks.value.findIndex((dock) => dock.name === app.name)
+  const index = dockStore.value.findIndex((dock) => dock.name === app.name)
   if (index < 0) return false
-  docks.value.splice(index, 1)
+  dockStore.value.splice(index, 1)
 }
 
 export const openApp = (app: AppType) => {
   // 先确定该应用是否已经存活
-  const find = docks.value.find((dock) => dock.name === app.name)
+  const find = dockStore.value.find((dock) => dock.name === app.name)
   if (find) {
     //如果已经存活, 显示窗口
     showApp(app)

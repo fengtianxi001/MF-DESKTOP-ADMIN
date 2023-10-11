@@ -1,7 +1,7 @@
 <template>
   <div class="system-wallpaper">
     <WallpaperItem
-      v-for="(wallpaper, index) in system.wallpapers"
+      v-for="(wallpaper, index) in systemStore.wallpapers"
       :key="index"
       :image="wallpaper"
     />
@@ -9,7 +9,7 @@
 </template>
 <script setup lang="ts">
 import WallpaperItem from './WallpaperItem.vue'
-import { system } from '@/layout/store/system'
+import { systemStore } from '@/layout/store/system'
 </script>
 <style lang="scss" scoped>
 .system-wallpaper {

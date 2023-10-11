@@ -1,53 +1,48 @@
 import { ref } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
 
-export const desktop = ref([
+export const widgetStore = ref([
   {
-    id: 'desktop00123',
+    id: uuidv4(),
     name: 'WidgetMap',
     data: {},
   },
   {
-    id: 'desktop007',
+    id: uuidv4(),
     name: 'WidgetWeather',
     data: {},
   },
   {
-    id: 'desktop004',
+    id: uuidv4(),
     name: 'WidgetHotpoints',
     data: {},
   },
   {
-    id: 'desktop006',
+    id: uuidv4(),
     name: 'WidgetStatistics',
     data: {},
   },
   {
-    id: 'desktop001',
+    id: uuidv4(),
     name: 'WidgetCalendar',
     data: {},
   },
   {
-    id: 'desktop003',
+    id: uuidv4(),
     name: 'WidgetDam',
     data: {},
   },
 
   {
-    id: 'desktop005',
+    id: uuidv4(),
     name: 'WidgetNews',
     data: {},
   },
   {
-    id: 'desktop010',
+    id: uuidv4(),
     name: 'WidgetMove',
     data: {},
   },
-
-  ...new Array(100).fill(0).map(() => {
-    return {
-      id: 'desktop' + Math.random() * 1000,
-      name: 'WidgetBlock',
-      data: {},
-    }
-  }),
 ])
+
+export default widgetStore

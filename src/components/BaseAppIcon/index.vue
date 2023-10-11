@@ -26,6 +26,6 @@ const style = computed(() => ({
   align-items: center;
   justify-content: center;
   color: #fff;
-  box-shadow: 0 0 5px rgb(0 0 0 / 35%);
+  box-shadow: 0 0 5px rgb(0 0 0 / 25%);
 }
 </style>

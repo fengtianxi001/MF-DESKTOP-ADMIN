@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { useViewer } from './hooks/useViewer'
 import { computed, ref, Transition, defineAsyncComponent } from 'vue'
-// import { closeApp, topApp, minusApp, fullscreenApp } from '../../layout/store/apps'
+import { closeApp, topApp, minusApp, fullscreenApp } from '@/layout/store/apps'
 import BaseAppIcon from '@/components/BaseAppIcon/index.vue'
 
 interface PropsType {
@@ -51,7 +51,7 @@ interface PropsType {
 
 const props = defineProps<PropsType>()
 
-const zindex = ref(0)
+const zindex = ref(999)
 const show = ref(true)
 const visible = ref(true)
 

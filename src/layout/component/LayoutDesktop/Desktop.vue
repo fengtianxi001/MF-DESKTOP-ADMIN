@@ -2,12 +2,12 @@
   <div class="layout-dekstop">
     <WidgetClock />
     <div class="desktop-main">
-      <Draggable v-model="desktop" item-key="id" class="desktop-main-widgets">
+      <Draggable v-model="widgetStore" item-key="id" class="desktop-main-widgets">
         <template #item="{ element }">
           <component :is="widgets[element.name]" :data="element.data" />
         </template>
       </Draggable>
-      <Draggable v-model="apps" item-key="id" class="desktop-main-apps">
+      <Draggable v-model="appStore" item-key="id" class="desktop-main-apps">
         <template #item="{ element }">
           <widgets.WidgetApp :data="element" />
         </template>
@@ -18,8 +18,8 @@
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 import WidgetClock from '@/layout/widgets/WidgetClock/index.vue'
-import { desktop } from '@/layout/store/desktop'
-import { apps } from '@/layout/store/apps'
+import { widgetStore } from '@/layout/store/widgets'
+import { appStore } from '@/layout/store/apps'
 import { widgets } from '@/layout/widgets'
 </script>
 <style lang="scss" scoped>
@@ -62,3 +62,4 @@ $app-column-unit: 50px;
   }
 }
 </style>
+@/layout/store/widgets

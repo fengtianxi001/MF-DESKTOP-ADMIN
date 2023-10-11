@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-export const system = ref({
+export const systemStore = ref({
   wallpaper: '/background/1.webp',
   wallpapers: [
     '/background/1.webp',
@@ -21,5 +21,5 @@ export const system = ref({
 })
 
 export const setSystemWallpaper = (src: string) => {
-  system.value.wallpaper = src
+  systemStore.value.wallpaper = src
 }

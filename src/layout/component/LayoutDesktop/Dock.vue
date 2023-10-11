@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import BaseAppIcon from '@/components/BaseAppIcon/index.vue'
-import { docks, showApp } from '@/layout/store/apps'
+import { dockStore, showApp } from '@/layout/store/apps'
 import { computed, reactive } from 'vue'
 
 const theme = reactive({
@@ -22,7 +22,7 @@ const theme = reactive({
 
 const source = computed(() => {
   return [
-    ...docks.value.map((dock) => ({
+    ...dockStore.value.map((dock) => ({
       size: 30,
       name: dock.iconName,
       color: dock.iconColor,
