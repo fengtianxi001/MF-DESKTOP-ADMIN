@@ -1,76 +1,149 @@
 <template>
   <div class="widget-calendar">
-    <div class="calendar-header">{{ current.month() + 1 }}月</div>
+    <div class="calendar-header">
+      <div class="header-left">{{ detail.date }}</div>
+      <ul class="header-mid">
+        <li>{{ detail.day }}</li>
+        <li>{{ detail.month }}</li>
+      </ul>
+      <ul class="header-right">
+        <i class="fa-solid fa-chevron-left" @click="changeMonth(1)"></i>
+        <i class="fa-solid fa-chevron-right" @click="changeMonth(-1)"></i>
+      </ul>
+    </div>
     <div class="calendar-body">
-      <span>日</span>
-      <span>一</span>
-      <span>二</span>
-      <span>三</span>
-      <span>四</span>
-      <span>五</span>
-      <span>六</span>
-      <span v-for="{ date, isToday } in calendar" :class="{ active: isToday }">{{ date }}</span>
+      <span
+        v-for="{ date, offsetx, istoday, ismonth } in calendar"
+        :class="{ istoday, ismonth }"
+        :style="{ gridColumn: offsetx }"
+      >
+        {{ date }}
+      </span>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import * as dayjs from 'dayjs'
+import { reactive, ref, watch } from 'vue'
+dayjs.locale('zh-cn')
 
-const current = dayjs()
-const startDay = current.startOf('month')
-const endDay = current.endOf('month')
-const calendar = new Array(startDay.date() - 1)
+const offset = ref(0)
+const calendar = ref([])
+const detail = reactive({
+  date: 0,
+  day: '',
+  month: '',
+  year: '',
+})
+const generateCalendar = () => {
+  const current = dayjs()
 
-for (let i = 0; i < endDay.date(); i++) {
-  const day = startDay.add(i, 'day')
-  calendar.push({
-    date: day.date(),
-    isToday: day.isSame(current, 'day'),
-    isCurrentMonth: day.isSame(current, 'month'),
-  })
+  const base = dayjs().subtract(offset.value, 'month')
+  detail.date = current.date()
+  detail.day = base.format('dddd')
+  detail.month = base.format('MMMM')
+  detail.year = base.format('YYYY')
+
+  const startDay = base.startOf('month')
+  const endDay = base.endOf('month')
+  calendar.value = []
+  for (let i = 0; i < endDay.date(); i++) {
+    const day = startDay.add(i, 'day')
+    calendar.value.push({
+      date: day.date(),
+      istoday: day.isSame(current, 'day'),
+      ismonth: day.isSame(current, 'month'),
+      offsetx: i === 0 ? startDay.day() : 0,
+    })
+  }
 }
+
+const changeMonth = (count) => {
+  offset.value += count
+}
+watch(
+  offset,
+  () => {
+    generateCalendar()
+  },
+  {
+    immediate: true,
+  }
+)
 </script>
 <style lang="scss" scoped>
 .widget-calendar {
   box-sizing: border-box;
   grid-row: span 1;
   grid-column: span 1;
-  padding: 10px;
+  overflow: hidden;
   color: var(--color-text-1);
   background-color: var(--color-bg-2);
-  border-radius: 6px;
+  border-radius: var(--border-radius-large);
   box-shadow: 0 0 5px rgb(0 0 0 / 35%);
 
   .calendar-header {
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: bolder;
-    color: #eb4e3d;
+    box-sizing: border-box;
+    display: flex;
+    grid-gap: 10px;
+    align-items: center;
+    height: 50px;
+    padding: 0 10px;
+    color: var(--color-text-2);
+    background-color: rgb(var(--gray-1));
+
+    .header-left {
+      font-size: 30px;
+      font-weight: bold;
+      color: var(--color-text-1);
+    }
+
+    .header-mid {
+      flex: 1;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .header-right {
+      display: flex;
+      grid-gap: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+
+      i:hover {
+        cursor: pointer;
+        opacity: 0.5;
+      }
+    }
   }
 
   .calendar-body {
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 2px;
-    font-size: 10px;
-    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
 
     span {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 22px;
-      height: 22px;
+      width: 23px;
+      height: 23px;
+      color: var(--color-text-3);
+      text-align: right;
       border-radius: 50%;
 
-      &.active {
-        color: #fff;
-        background-color: #eb4e3d;
+      &.ismonth {
+        color: var(--color-text-1);
       }
 
-      &:nth-child(7n + 1),
-      &:nth-child(7n + 7) {
-        color: #777;
+      &.istoday {
+        color: #fff;
+        background-color: rgb(var(--primary-6));
       }
     }
   }

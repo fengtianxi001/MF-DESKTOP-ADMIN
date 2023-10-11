@@ -2,6 +2,11 @@ import { ref } from 'vue'
 
 export const desktop = ref([
   {
+    id: 'desktop00123',
+    name: 'WidgetMap',
+    data: {},
+  },
+  {
     id: 'desktop007',
     name: 'WidgetWeather',
     data: {},
@@ -29,7 +34,12 @@ export const desktop = ref([
 
   {
     id: 'desktop005',
-    name: 'WidgetPolling',
+    name: 'WidgetNews',
+    data: {},
+  },
+  {
+    id: 'desktop010',
+    name: 'WidgetMove',
     data: {},
   },
 
