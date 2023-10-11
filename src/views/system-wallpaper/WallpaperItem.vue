@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { setSystemWallpaper } from '../../stores/system'
+import { setSystemWallpaper } from '@/layout/store/system'
 interface PropsType {
   image: string
 }

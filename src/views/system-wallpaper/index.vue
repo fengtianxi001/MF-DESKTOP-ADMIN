@@ -9,7 +9,7 @@
 </template>
 <script setup lang="ts">
 import WallpaperItem from './WallpaperItem.vue'
-import { system } from '@/stores/system'
+import { system } from '@/layout/store/system'
 </script>
 <style lang="scss" scoped>
 .system-wallpaper {

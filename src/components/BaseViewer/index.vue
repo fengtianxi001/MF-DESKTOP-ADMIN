@@ -42,8 +42,9 @@
 <script setup lang="ts">
 import { useViewer } from './hooks/useViewer'
 import { computed, ref, Transition, defineAsyncComponent } from 'vue'
-import { closeApp, topApp, minusApp, fullscreenApp } from '@/stores/apps'
+// import { closeApp, topApp, minusApp, fullscreenApp } from '../../layout/store/apps'
 import BaseAppIcon from '@/components/BaseAppIcon/index.vue'
+
 interface PropsType {
   app: AppType
 }

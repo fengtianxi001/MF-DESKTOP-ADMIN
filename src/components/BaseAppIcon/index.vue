@@ -11,20 +11,14 @@ interface PropsType {
   color: string
   name: string
 }
-
 const props = defineProps<PropsType>()
-
-const style = computed(() => {
-  const size = props.size
-  const color = props.color
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    borderRadius: `${size / 4}px`,
-    background: color,
-    fontSize: `${size / 2}px`,
-  }
-})
+const style = computed(() => ({
+  width: `${props.size}px`,
+  height: `${props.size}px`,
+  borderRadius: `${props.size / 4}px`,
+  background: props.color,
+  fontSize: `${props.size / 2}px`,
+}))
 </script>
 <style lang="scss" scoped>
 .base-app-icon {
