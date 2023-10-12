@@ -1,11 +1,9 @@
-# MF-Desktop
+# 🍪 MF-DESKTOP-ADMIN
 
-- 综合一张图
-- 大坝监测预警
-  - 异常记录
-  - 监测报告
-- 雨水情报表
-  - 预警发布
-  - 雨水情报表
-- 视频监控
-- 巡查日历
+> 这是一个基于 Vue3, ArcoDesign 的后台管理系统案例，主要用于学习和交流，欢迎大家提出宝贵意见。
+
+> 服务地址： <https://fengtianxi001.github.io/MF-DESKTOP-ADMIN/>
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/fengtianxi001/MF-GIF/v2.0/screenshot/cover.png" title="mf-gif">
+</h1>

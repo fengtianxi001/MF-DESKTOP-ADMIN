@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
 import LunarCalendar from 'lunar-calendar'
 dayjs.locale('zh-cn')

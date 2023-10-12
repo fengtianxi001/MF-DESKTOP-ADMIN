@@ -23,7 +23,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { reactive, ref, watch } from 'vue'
 dayjs.locale('zh-cn')
 
