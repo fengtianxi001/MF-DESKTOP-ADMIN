@@ -7,10 +7,55 @@ export const dockStore = ref<AppListType>([])
 export const appStore: Ref<AppListType> = ref([
   {
     id: uuidv4(),
+    name: '预警记录',
+    src: '/business-warning',
+    iconName: 'fa-radiation',
+    iconColor: '#e23371',
+    window: {
+      width: 1200,
+      height: 800,
+      resizable: true,
+      fullscreen: true,
+      minimizable: true,
+      maximizable: true,
+    },
+  },
+  {
+    id: uuidv4(),
+    name: 'vr展示',
+    src: '/business-vr',
+    iconName: 'fa-vr-cardboard',
+    iconColor: '#3fb8f6',
+    window: {
+      width: 1200,
+      height: 800,
+      resizable: true,
+      fullscreen: true,
+      minimizable: true,
+      maximizable: true,
+    },
+  },
+  {
+    id: uuidv4(),
+    name: '设备管理',
+    src: '/business-device',
+    iconName: 'fa-plug',
+    iconColor: '#fb8f0b',
+    window: {
+      width: 1200,
+      height: 800,
+      resizable: true,
+      fullscreen: true,
+      minimizable: true,
+      maximizable: true,
+    },
+  },
+  {
+    id: uuidv4(),
     name: '监控平台',
     src: 'https://fengtianxi001.github.io/MF-TurbineMonitor/',
     iconName: 'fa-tv',
-    iconColor: '#0099ff',
+    iconColor: '#000000',
     window: {
       width: 1200,
       height: 800,
@@ -55,6 +100,7 @@ export const appStore: Ref<AppListType> = ref([
 export const addDockItem = (app: AppType) => {
   dockStore.value.push(app)
 }
+
 export const deleteDockItem = (app: AppType) => {
   const index = dockStore.value.findIndex((dock) => dock.name === app.name)
   if (index < 0) return false

@@ -146,6 +146,7 @@ $z-index: v-bind(zindex);
 
   .viewer-content {
     height: calc(100% - 38px);
+    background-color: var(--color-fill-2);
   }
 
   .viewer-handle {
