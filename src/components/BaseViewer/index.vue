@@ -34,12 +34,12 @@
         <span class="iconfont icon-close" @click="closeApp(app)"></span>
       </div>
       <div class="viewer-content">
-        <AsyncComp />
+        <iframe :src="app.src" width="100%" height="100%"></iframe>
       </div>
     </div>
   </transition>
 </template>
-<script setup lang="ts">
+<script setup lang="tsx">
 import { useViewer } from './hooks/useViewer'
 import { computed, ref, Transition, defineAsyncComponent } from 'vue'
 import { closeApp, topApp, minusApp, fullscreenApp } from '@/layout/store/apps'
@@ -54,8 +54,6 @@ const props = defineProps<PropsType>()
 const zindex = ref(999)
 const show = ref(true)
 const visible = ref(true)
-
-const AsyncComp = defineAsyncComponent(() => import(props.app.src))
 
 const style = computed(() => {
   const appWindow = props.app.window
@@ -152,7 +150,7 @@ $z-index: v-bind(zindex);
 
   .viewer-handle {
     position: absolute;
-    z-index: 9999;
+    z-index: 999999;
   }
 
   .viewer-handle-top {

@@ -1,47 +1,16 @@
 <template>
-  <div class="widget-map" ref="container"></div>
+  <BaseMap class="widget-map" ref="bmap"></BaseMap>
 </template>
 <script setup lang="ts">
-import 'leaflet/dist/leaflet.css'
-import * as L from 'leaflet'
-import { onMounted, ref, shallowRef, nextTick, createVNode, defineComponent, h, render } from 'vue'
+import BaseMap from '@/components/BaseMap/index.vue'
+import { onMounted, ref, nextTick } from 'vue'
 import Marker from './Marker.vue'
 
-const container = ref()
-const map = shallowRef()
-
-const addMarker = (coord?: any) => {
-  const center = coord || [26.07, 119.2]
-  const component = defineComponent({ render: () => h(Marker, {}) })
-  const instance = createVNode(component)
-  render(instance, document.createElement('div'))
-  const icon = L.divIcon({
-    html: instance.el,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-  })
-  const marker = L.marker(center, { icon })
-  marker.addTo(map.value)
-}
-
-const initMap = () => {
-  const center = [26.07, 119.2]
-  const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-  map.value = L.map(container.value, {
-    center,
-    zoom: 15,
-    minZoom: 9,
-    maxZoom: 18,
-    zoomControl: false,
-    attributionControl: false,
-  })
-  L.tileLayer(tileUrl).addTo(map.value)
-}
+const bmap = ref()
 
 onMounted(() => {
   nextTick(() => {
-    initMap()
-    addMarker()
+    bmap.value?.addMarker(Marker, {}, [26.07, 119.2], 'staff')
   })
 })
 </script>

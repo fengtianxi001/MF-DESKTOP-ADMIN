@@ -11,3 +11,12 @@ body[arco-theme='dark'] {
 li{
   list-style: none;
 }
+iframe{
+  border: unset;
+}
+.arco-table-size-small{
+  .arco-table-th-title,.arco-table-td-content{
+    font-size: 12px;
+  }
+
+}

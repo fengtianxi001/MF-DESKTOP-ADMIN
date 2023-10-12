@@ -8,6 +8,16 @@ const router = createRouter({
       name: 'home',
       component: Layout,
     },
+    {
+      path: '/business-map',
+      name: 'business-map',
+      component: () => import('@/views/business-map/index.vue'),
+    },
+    {
+      path: '/system-wallpaper',
+      name: 'system-wallpaper',
+      component: () => import('@/views/system-wallpaper/index.vue'),
+    },
   ],
 })
 

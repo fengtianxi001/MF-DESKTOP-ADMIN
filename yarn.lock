@@ -445,6 +445,11 @@
   "resolved" "https://npm.ascs.tech/repository/npm-public/@types/estree/-/estree-1.0.2.tgz"
   "version" "1.0.2"
 
+"@types/geojson@*":
+  "integrity" "sha512-L7A0AINMXQpVwxHJ4jxD6/XjZ4NDufaRlUJHjNIFKYUFBH1SvOW+neaqb0VTRSLW5suSrSu19ObFEFnfNcr+qg=="
+  "resolved" "https://npm.ascs.tech/repository/npm-public/@types/geojson/-/geojson-7946.0.11.tgz"
+  "version" "7946.0.11"
+
 "@types/json-schema@*":
   "integrity" "sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ=="
   "resolved" "https://npm.ascs.tech/repository/npm-public/@types/json-schema/-/json-schema-7.0.13.tgz"
@@ -454,6 +459,13 @@
   "integrity" "sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ=="
   "resolved" "https://npm.ascs.tech/repository/npm-public/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
+
+"@types/leaflet@^1.9.6":
+  "integrity" "sha512-HakGTK5LBBWegNWsAmTlG55zN1zszYec7aG47/z6SzT90bW2vqjmbqk3YKAbrtveO+G7fSTKTYqVbIwAFnTrbg=="
+  "resolved" "https://npm.ascs.tech/repository/npm-public/@types/leaflet/-/leaflet-1.9.6.tgz"
+  "version" "1.9.6"
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/minimist@^1.2.0":
   "integrity" "sha512-ZYFzrvyWUNhaPomn80dsMNgMeXxNWZBdkuG/hWlUvXvbdUH8ZERNBGXnU87McuGcWDsyzX2aChCv/SVN348k3A=="

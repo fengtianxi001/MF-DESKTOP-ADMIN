@@ -1,26 +1,42 @@
 <template>
-  <BaseMap ref="bmap" class="business-map">
-    <template #left>
-      <LocalTable />
-    </template>
-    <template #right>
-      <ControlLayers />
-      <ControlTiles />
-      <ControlParams />
-    </template>
-  </BaseMap>
+  <ControlPanel title="人员定位" :width="320">
+    <Table
+      :columns="columns"
+      :data="data"
+      :pagination="false"
+      size="small"
+      :bordered="false"
+      @row-click="rowClick"
+    />
+  </ControlPanel>
 </template>
-<script setup lang="ts">
-import Marker from './components/Marker/index.vue'
-import BaseMap from '@/components/BaseMap/index.vue'
-import ControlLayers from '@/components/BaseMap/src/ControlLayers.vue'
-import ControlTiles from '@/components/BaseMap/src/ControlTiles.vue'
-import ControlParams from '@/components/BaseMap/src/ControlParams.vue'
-import LocalTable from './components/LocalTable/index.vue'
-import { onMounted, ref, nextTick } from 'vue'
+<script setup lang="tsx">
+import { Table, Badge } from '@arco-design/web-vue'
+import ControlPanel from '@/components/BaseMap/src/ControlPanel.vue'
+import UserInfo from './UserInfo.vue'
+import { inject } from 'vue'
 
-const bmap = ref()
-
+const bmap: any = inject('bmap')
+const columns: any = [
+  {
+    title: '基本信息',
+    render: ({ record }) => <UserInfo name={record.name} title={record.title}></UserInfo>,
+  },
+  {
+    title: '所属部门',
+    dataIndex: 'department',
+  },
+  {
+    title: '状态',
+    align: 'center',
+    dataIndex: 'status',
+    render: ({ record }) => {
+      const status = record.status ? 'success' : 'normal'
+      const text = record.status ? '在线' : '离线'
+      return <Badge status={status} text={text}></Badge>
+    },
+  },
+]
 const data = [
   {
     name: '张三',
@@ -93,18 +109,7 @@ const data = [
     coordinate: ['26.078660', '119.199944'],
   },
 ]
-
-onMounted(() => {
-  nextTick(() => {
-    data.forEach((item) => {
-      bmap.value?.addMarker(Marker, { name: item.name }, item.coordinate, item.name)
-    })
-  })
-})
-</script>
-<style lang="scss" scoped>
-.business-map {
-  width: 100%;
-  height: 100%;
+const rowClick = (record: any) => {
+  bmap.map?.value?.flyTo(record.coordinate, 18)
 }
-</style>
+</script>

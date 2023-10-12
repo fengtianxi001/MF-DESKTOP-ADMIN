@@ -1,14 +1,30 @@
 import { createVNode, ref, render, type Ref } from 'vue'
 import BaseViewer from '@/components/BaseViewer/index.vue'
+import { v4 as uuidv4 } from 'uuid'
 
 export const dockStore = ref<AppListType>([])
 
 export const appStore: Ref<AppListType> = ref([
   {
-    id: 'mf001',
-    name: '一张图',
-    src: '../../views/business-map/index.vue',
-    iconName: 'fa-map-location-dot',
+    id: uuidv4(),
+    name: '监控平台',
+    src: 'https://fengtianxi001.github.io/MF-TurbineMonitor/',
+    iconName: 'fa-tv',
+    iconColor: '#0099ff',
+    window: {
+      width: 1200,
+      height: 800,
+      resizable: false,
+      fullscreen: false,
+      minimizable: true,
+      maximizable: false,
+    },
+  },
+  {
+    id: uuidv4(),
+    name: '人员定位',
+    src: '/business-map',
+    iconName: 'fa-street-view',
     iconColor: '#0099ff',
     window: {
       width: 1000,
@@ -18,15 +34,16 @@ export const appStore: Ref<AppListType> = ref([
       maximizable: true,
     },
   },
+
   {
-    id: 'mf002',
+    id: uuidv4(),
     name: '壁纸库',
-    src: '../../views/system-wallpaper/index.vue',
+    src: '/system-wallpaper',
     iconName: 'fa-image',
     iconColor: '#8856ff',
     window: {
       width: 1000,
-      height: 'auto',
+      height: 570,
       fullscreen: false,
       minimizable: true,
       maximizable: false,
