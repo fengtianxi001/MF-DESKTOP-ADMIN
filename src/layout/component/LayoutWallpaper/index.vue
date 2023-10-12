@@ -5,7 +5,7 @@
 import { systemStore } from '@/layout/store/system'
 import { computed } from 'vue'
 
-const background = computed(() => `url(${systemStore.value.wallpaper})`)
+const background = computed(() => `url(./${systemStore.value.wallpaper})`)
 </script>
 <style lang="scss" scoped>
 $background: v-bind(background);
